@@ -1,0 +1,4 @@
+// hold the application secrets and config
+module.exports = {
+	secret: 'your secret here'
+};
