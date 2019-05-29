@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 class Signup extends Component {
 	onSubmit = (formProps) => {
 		// formProps contains all the items a user inputs
-		console.log(formProps);
+		this.props.signup(formProps);
 	};
 
 	render() {
@@ -26,4 +29,8 @@ class Signup extends Component {
 	}
 }
 
-export default reduxForm({ form: 'signup' })(Signup);
+export default compose(connect(null, actions), reduxForm({ form: 'signup' }))(Signup);
+
+// we pass null as the first value because we have no state object to pass
+
+// compose allows us to apply multiple HOCs to a component with good syntax

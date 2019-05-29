@@ -5,17 +5,22 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // DB Setup
-mongoose.connect('mongodb://localhost:27017/auth').then(() => {
-	console.log('App connected to mongodb');
-});
+mongoose
+	.connect('mongodb://localhost:27017/auth')
+	.then(() => {
+		console.log('App connected to mongodb');
+	})
+	.catch((err) => console.log('Mongo Error', err));
 
 // instantiate express
 const app = express();
 
 // App Setup
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 
