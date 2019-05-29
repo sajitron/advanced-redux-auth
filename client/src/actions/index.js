@@ -13,3 +13,14 @@ export const signup = (formProps, callback) => async (dispatch) => {
 	}
 };
 // redux thunk allows us to return an action object or a function
+
+export const signout = () => {
+	localStorage.removeItem('token');
+
+	return {
+		type: AUTH_USER,
+		payload: ''
+	};
+};
+
+// the above actions are passed to the components where they will be used via connect to props
